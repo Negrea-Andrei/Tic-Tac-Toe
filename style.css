@@ -1,0 +1,51 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: antiquewhite;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+header {
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    font-size: xx-large;    
+}
+
+footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 98%;
+    background-color: bisque;
+}
+
+.game-board-container {
+    height: 60%;
+    width: 40%;
+    background-color: rgb(205, 249, 252);
+    margin: 0% 0% 1% 0%;
+    border: solid rgb(255, 212, 159) 5px;
+}
+
+.score-board {
+    height: 15%;
+    width: 75%;
+    background-color: rgb(245, 220, 152);
+    border: solid rgb(250, 196, 47) 1px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
