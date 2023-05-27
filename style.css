@@ -79,3 +79,10 @@ img {
     font-size: 2em;
 }
 
+.square {
+    font-size: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
