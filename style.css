@@ -49,3 +49,29 @@ footer {
     align-items: center;
     justify-content: space-around;
 }
+
+.player-board {
+    height: 80%;
+    width: 30%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center;
+}
+
+.img-container {
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+img {
+    height: auto;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.player-name, .player1-score, .player2-score {
+    font-size: xx-large;
+}
+
