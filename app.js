@@ -36,7 +36,7 @@ const gameflow = (() => {
         const player2Score = document.querySelector('.player2-score');
 
         //Check the 'board' array to see if we there is a winner
-        for (i = 0; i < gameboard.board.length; i++) {
+        for (i = 0; i <= gameboard.board.length; i++) {
 
             //Check for the mark in the array index 0
             if (i == 0 && gameboard.board[i] != ' ') {
