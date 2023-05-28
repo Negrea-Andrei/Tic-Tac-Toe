@@ -17,15 +17,19 @@ const Player = (name) => {
 
 const gameflow =(() => {  
     let squares = document.querySelectorAll('.square');
-    let number = 0;
+    let turn = 0;
     squares.forEach((square, index) => { square.addEventListener('click', () => {        
-        if(number == 0 && square.innerHTML == '') {
+        if(turn == 0 && square.innerHTML == '') {
             square.innerHTML = "X";
-            number = 1
+            gameboard.board[index] = square.innerHTML
+            turn = 1
+            console.log(gameboard.board)
         }
-        else if (number == 1 && square.innerHTML == '') {
+        else if (turn == 1 && square.innerHTML == '') {
             square.innerHTML = 'O';
-            number = 0;
+            gameboard.board[index] = square.innerHTML
+            turn = 0;
+            console.log(gameboard.board)
         }       
         })        
     })
