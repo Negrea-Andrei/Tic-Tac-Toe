@@ -122,6 +122,10 @@ const gameflow = (() => {
                     scoreUpdate()
                 }
             }
+
+            else if(!gameboard.board.includes(' ')){
+                resetBoard();
+            }
         }
     }
 
