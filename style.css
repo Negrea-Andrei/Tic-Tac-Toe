@@ -97,7 +97,6 @@ img {
     height: 54.5%;
     width: 39%;
     background-color: rgb(255, 222, 195);
-    display: none;
 }
 
 .start-game > p {
@@ -182,6 +181,7 @@ div > label {
     width: 39%;
     background-color: rgb(255, 222, 195);
     gap: 10%;
+    display: none;
 }
 
 .player-vs-computer > p {    
