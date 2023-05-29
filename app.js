@@ -13,7 +13,7 @@ const gameboard = (() => {
         container.appendChild(square);
     });
     //Return the board
-    return { board, container}
+    return { board, container }
 })();
 
 //Create a factory function to create the player objects
@@ -27,7 +27,7 @@ const Player2 = Player('steve', 'O');
 //Modular pattern to control the flow of the game
 const gameflow = (() => {
     let squares = document.querySelectorAll('.square');
-    
+
     //Create a variable that will hold who's turn it tis to place a mark
     let turn = Player1.name;
 
@@ -37,7 +37,7 @@ const gameflow = (() => {
         turn = Player1.name;
         squares.forEach((square) => {
             square.innerHTML = '';
-        });        
+        });
     };
 
 
@@ -123,13 +123,14 @@ const gameflow = (() => {
                 }
             }
 
-            else if(!gameboard.board.includes(' ')){
+            //If there is a tie
+            else if (!gameboard.board.includes(' ')) {
                 resetBoard();
             }
         }
     }
 
-    
+
     //Create a function that will switch between the players turns
     const flow = (() => {
 
