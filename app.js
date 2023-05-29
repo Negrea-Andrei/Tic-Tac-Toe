@@ -13,7 +13,7 @@ const gameboard = (() => {
         container.appendChild(square);
     });
     //Return the board
-    return { board, container }
+    return { board, container}
 })();
 
 //Create a factory function to create the player objects
@@ -27,48 +27,58 @@ const Player2 = Player('steve', 'O');
 //Modular pattern to control the flow of the game
 const gameflow = (() => {
     let squares = document.querySelectorAll('.square');
+    
+    //Create a variable that will hold who's turn it tis to place a mark
+    let turn = Player1.name;
+
+    // Reset the board
+    let resetBoard = () => {
+        gameboard.board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '];
+        turn = Player1.name;
+        squares.forEach((square) => {
+            square.innerHTML = '';
+        });        
+    };
+
+
+    //Initiate variables that will hold the scores for players from the DOM
+    const player1Score = document.querySelector('.player1-score');
+    const player2Score = document.querySelector('.player2-score');
 
     //Create a function that will check if there is a winner or not
     const winner = () => {
 
-        //Initiate variables that will hold the scores for players from the DOM
-        const player1Score = document.querySelector('.player1-score');
-        const player2Score = document.querySelector('.player2-score');
+        //Scores update
+        const scoreUpdate = () => {
+            if (gameboard.board[i] == Player1.mark) {
+                player1Score.innerHTML = parseInt(player1Score.innerHTML) + 1;
+                resetBoard();
+            }
+            else if (gameboard.board[i] == Player2.mark) {
+                player2Score.innerHTML = parseInt(player2Score.innerHTML) + 1;
+                resetBoard();
+            }
+        }
 
         //Check the 'board' array to see if we there is a winner
-        for (i = 0; i <= gameboard.board.length; i++) {
+        for (i = 0; i <= 8; i++) {
 
             //Check for the mark in the array index 0
             if (i == 0 && gameboard.board[i] != ' ') {
 
                 //For the horizontal line
                 if (gameboard.board[i] == gameboard.board[i + 1] && gameboard.board[i] == gameboard.board[i + 2]) {
-                    if(gameboard.board[i] == Player1.mark){
-                        player1Score.innerHTML = parseInt(player1Score.innerHTML) + 1;
-                    }
-                    else if(gameboard.board[i] == Player2.mark){
-                        player2Score.innerHTML = parseInt(player2Score.innerHTML) + 1;
-                    }                                    
+                    scoreUpdate()
                 }
 
                 //For vertical line
                 else if (gameboard.board[i] == gameboard.board[i + 3] && gameboard.board[i] == gameboard.board[i + 6]) {
-                    if(gameboard.board[i] == Player1.mark){
-                        player1Score.innerHTML = parseInt(player1Score.innerHTML) + 1
-                    }
-                    else if(gameboard.board[i] == Player2.mark){
-                        player2Score.innerHTML = parseInt(player2Score.innerHTML) + 1
-                    }
+                    scoreUpdate()
                 }
 
                 //For diagonal line
                 else if (gameboard.board[i] == gameboard.board[i + 4] && gameboard.board[i] == gameboard.board[i + 8]) {
-                    if(gameboard.board[i] == Player1.mark){
-                        player1Score.innerHTML = parseInt(player1Score.innerHTML) + 1
-                    }
-                    else if(gameboard.board[i] == Player2.mark){
-                        player2Score.innerHTML = parseInt(player2Score.innerHTML) + 1
-                    }
+                    scoreUpdate()
                 }
             }
 
@@ -77,12 +87,7 @@ const gameflow = (() => {
 
                 //Check for vertical line
                 if (gameboard.board[i] == gameboard.board[i + 3] && gameboard.board[i] == gameboard.board[i + 6]) {
-                    if(gameboard.board[i] == Player1.mark){
-                        player1Score.innerHTML = parseInt(player1Score.innerHTML) + 1
-                    }
-                    else if(gameboard.board[i] == Player2.mark){
-                        player2Score.innerHTML = parseInt(player2Score.innerHTML) + 1
-                    }
+                    scoreUpdate()
                 }
             }
 
@@ -91,22 +96,12 @@ const gameflow = (() => {
 
                 //Check for diagonal line
                 if (gameboard.board[i] == gameboard.board[i + 3] && gameboard.board[i] == gameboard.board[i + 6]) {
-                    if(gameboard.board[i] == Player1.mark){
-                        player1Score.innerHTML = parseInt(player1Score.innerHTML) + 1
-                    }
-                    else if(gameboard.board[i] == Player2.mark){
-                        player2Score.innerHTML = parseInt(player2Score.innerHTML) + 1
-                    }
+                    scoreUpdate()
                 }
 
                 //Check for vertical line
                 else if (gameboard.board[i] == gameboard.board[i + 2] && gameboard.board[i] == gameboard.board[i + 4]) {
-                    if(gameboard.board[i] == Player1.mark){
-                        player1Score.innerHTML = parseInt(player1Score.innerHTML) + 1
-                    }
-                    else if(gameboard.board[i] == Player2.mark){
-                        player2Score.innerHTML = parseInt(player2Score.innerHTML) + 1
-                    }
+                    scoreUpdate()
                 }
             }
 
@@ -115,12 +110,7 @@ const gameflow = (() => {
 
                 //Check for horizontal line
                 if (gameboard.board[i] == gameboard.board[i + 1] && gameboard.board[i] == gameboard.board[i + 2]) {
-                    if(gameboard.board[i] == Player1.mark){
-                        player1Score.innerHTML = parseInt(player1Score.innerHTML) + 1
-                    }
-                    else if(gameboard.board[i] == Player2.mark){
-                        player2Score.innerHTML = parseInt(player2Score.innerHTML) + 1
-                    }
+                    scoreUpdate()
                 }
             }
 
@@ -129,27 +119,20 @@ const gameflow = (() => {
 
                 //Check for horizontal line
                 if (gameboard.board[i] == gameboard.board[i + 1] && gameboard.board[i] == gameboard.board[i + 2]) {
-                    if(gameboard.board[i] == Player1.mark){
-                        player1Score.innerHTML = parseInt(player1Score.innerHTML) + 1
-                    }
-                    else if(gameboard.board[i] == Player2.mark){
-                        player2Score.innerHTML = parseInt(player2Score.innerHTML) + 1
-                    }
+                    scoreUpdate()
                 }
             }
         }
     }
-    
-    //Create a variable that will hold who's turn it tis to place a mark
-    let turn = Player1.name;
 
+    
     //Create a function that will switch between the players turns
-    const flow = (() => {        
+    const flow = (() => {
 
         //For each square and index of the square add an event listener
         squares.forEach((square, index) => {
             square.addEventListener('click', () => {
-                
+
                 //If it's the Player1 turn place an X and update the array with the mark placed on the arrays index as same as the square data attribute
                 if (turn == Player1.name && square.innerHTML == '') {
                     square.innerHTML = Player1.mark;
