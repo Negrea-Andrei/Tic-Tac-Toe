@@ -84,5 +84,116 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
+
+.start-game {
+    position: absolute;
+    top: 19%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px 10px 25px 10px;
+    height: 54.5%;
+    width: 39%;
+    background-color: rgb(255, 222, 195);
+    display: none;
+}
+
+.start-game > p {
+    font-size: xx-large;
+}
+
+.start-game > div > button {
+    width: 250px;
+    height: 75px;
+    font-size: x-large;
+    background-color: burlywood;
+}
+
+.start-game > div > button:hover {
+    background-color: rgb(236, 196, 143);
+    cursor: pointer;
+}
+
+.game-mode {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.player-vs-player {
+    position: absolute;
+    top: 19%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px 10px 25px 10px;
+    height: 54.5%;
+    width: 39%;
+    background-color: rgb(255, 222, 195);
+    gap: 10%;
+    display: none;
+}
+
+.player-vs-player > p {    
+    font-size: xx-large;
+}
+
+.player-vs-player > button {
+    width: 150px;
+    height: 75px;
+    font-size: x-large;
+    background-color: burlywood;
+}
+
+div > input{
+    width: 70%;
+    cursor: pointer;
+    font-size: x-large;
+}
+
+.player-vs-player > button:hover {
+    background-color: rgb(236, 196, 143);
+    cursor: pointer;
+}
+
+.players-names {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    margin-bottom: 100px;
+    padding-left: 50px;
+}
+
+div > label {
+    font-size: 2rem;
+}
+
+.player-vs-computer {
+    position: absolute;
+    top: 19%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px 10px 25px 10px;
+    height: 54.5%;
+    width: 39%;
+    background-color: rgb(255, 222, 195);
+    gap: 10%;
+}
+
+.player-vs-computer > p {    
+    font-size: xx-large;
+}
+
+.player-vs-computer > button {
+    width: 150px;
+    height: 75px;
+    font-size: x-large;
+    background-color: burlywood;
+}
+
+
 
