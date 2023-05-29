@@ -12,55 +12,58 @@ const gameboard = (() => {
         square.style.border = 'solid 1px black';
         container.appendChild(square);
     });
+
+    //Function that will help determine game mode
+    const gamemode = () => {
+
+        //Select the buttons from the DOM
+        let PvP = document.querySelector('.PvP');
+        let PvC = document.querySelector('.PvC');
+        let playV1 = document.querySelector('.play-v1');
+        let playV2 = document.querySelector('.play-v2')
+
+        //Select the input fields
+        let setPlayer1Name = document.getElementById('player-1-name');
+        let setPlayer2Name = document.getElementById('player-2-name');
+        let setOnlyPlayerName = document.getElementById('player-name');
+
+        //Select screens
+        let start = document.querySelector('.start-game');
+        let twoPlayersScreen = document.querySelector('.player-vs-player');
+        let onePlayerScreen = document.querySelector('.player-vs-computer');
+
+        //Add an event listener for when sw want to play PvP
+        PvP.addEventListener('click', () => {
+            start.style.display = "none";
+            twoPlayersScreen.style.display = "flex"
+        })
+
+        //Add an event listener for when sw want to play PvC
+        PvC.addEventListener('click', () => {
+            start.style.display = "none";
+            onePlayerScreen.style.display = "flex"
+        })
+
+        //Start the game for PvP
+        playV1.addEventListener('click', () => {
+            twoPlayersScreen.style.display = "none";
+        })
+
+        //Start the game for PvC
+        playV2.addEventListener('click', () => {
+            onePlayerScreen.style.display = "none";
+        })
+    }
     //Return the board
-    return { board, container }
+    return { board, container, gamemode }
 })();
+
 
 //Create a factory function to create the player objects
 const Player = (name, mark) => {
     return { name, mark };
 };
 
-const gamemode = () => {
-    
-    //Select the buttons from the DOM
-    let PvP = document.querySelector('.PvP');
-    let PvC = document.querySelector('.PvC');
-    let playV1 = document.querySelector('.play-v1');
-    let playV2 = document.querySelector('.play-v2')
-
-    //Select the input fields
-    let setPlayer1Name = document.getElementById('player-1-name');
-    let setPlayer2Name = document.getElementById('player-2-name');
-    let setOnlyPlayerName = document.getElementById('player-name');
-
-    //Select screens
-    let start = document.querySelector('.start-game');
-    let twoPlayersScreen = document.querySelector('.player-vs-player');
-    let onePlayerScreen = document.querySelector('.player-vs-computer');
-
-    //Add an event listener for when sw want to play PvP
-    PvP.addEventListener('click', () => {
-        start.style.display = "none";
-        twoPlayersScreen.style.display = "flex"
-    })
-
-    //Add an event listener for when sw want to play PvC
-    PvC.addEventListener('click', () => {
-        start.style.display = "none";
-        onePlayerScreen.style.display = "flex"
-    })
-
-    //Start the game for PvP
-    playV1.addEventListener('click', () => {
-        twoPlayersScreen.style.display = "none";
-    })
-
-    //Start the game for PvC
-    playV2.addEventListener('click', () => {
-        onePlayerScreen.style.display = "none";
-    })
-}
 
 const Player1 = Player('jeff', 'X');
 const Player2 = Player('steve', 'O');
@@ -70,13 +73,13 @@ const gameflow = (() => {
     //Select all the squares 
     let squares = document.querySelectorAll('.square');
 
-    gamemode();
+    gameboard.gamemode();
 
     //Create a variable that will hold who's turn it tis to place a mark
     let turn = Player1.name;
 
     // Reset the board
-    let resetBoard = () => {
+    const resetBoard = () => {
         gameboard.board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '];
         turn = Player1.name;
         squares.forEach((square) => {
