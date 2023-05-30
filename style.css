@@ -75,7 +75,7 @@ img {
 
 }
 
-.player-name, .player1-score, .player2-score {
+.first-player, .second-player, .player1-score, .player2-score {
     font-size: 2em;
 }
 
@@ -104,8 +104,8 @@ img {
 }
 
 .start-game > div > button {
-    width: 250px;
-    height: 75px;
+    width: 50%;
+    height: 100%;
     font-size: x-large;
     background-color: burlywood;
 }

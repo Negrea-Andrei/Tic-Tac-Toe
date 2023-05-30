@@ -32,13 +32,13 @@ const gameboard = (() => {
         let twoPlayersScreen = document.querySelector('.player-vs-player');
         let onePlayerScreen = document.querySelector('.player-vs-computer');
 
-        //Add an event listener for when sw want to play PvP
+        //Add an event listener for when we want to play PvP
         PvP.addEventListener('click', () => {
             start.style.display = "none";
             twoPlayersScreen.style.display = "flex"
         })
 
-        //Add an event listener for when sw want to play PvC
+        //Add an event listener for when we want to play PvC
         PvC.addEventListener('click', () => {
             start.style.display = "none";
             onePlayerScreen.style.display = "flex"
@@ -46,6 +46,10 @@ const gameboard = (() => {
 
         //Start the game for PvP
         playV1.addEventListener('click', () => {
+            let setPlayer1Name = document.getElementById('player-1-name');
+            let setPlayer2Name = document.getElementById('player-2-name');
+            let firstPlayer = document.querySelector('.first-player');
+            let secondPlayer = document.querySelector('.second-player');
             twoPlayersScreen.style.display = "none";
         })
 
@@ -65,15 +69,16 @@ const Player = (name, mark) => {
 };
 
 
-const Player1 = Player('jeff', 'X');
-const Player2 = Player('steve', 'O');
-
 //Modular pattern to control the flow of the game
 const gameflow = (() => {
     //Select all the squares 
     let squares = document.querySelectorAll('.square');
 
     gameboard.gamemode();
+
+
+    const Player1 = Player('jeff', 'X');
+    const Player2 = Player('steve', 'O');
 
     //Create a variable that will hold who's turn it tis to place a mark
     let turn = Player1.name;

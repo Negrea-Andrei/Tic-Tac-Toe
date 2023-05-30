@@ -27,11 +27,11 @@
         <div class="players-names">
             <div class="player-1-name">
                 <label for="player-1-name">Player 1</label>
-                <input type="text" id="player-1-name" pattern="^[a-zA-Z]{3,}$" required placeholder="Example: Jeff">
+                <input type="text" id="player-1-name" pattern="[a-zA-Z]" minlength="3" maxlength="8" required placeholder="Example: Jeff">
             </div>
             <div class="player-2-name">
                 <label for="player-2-name">Player 2</label>
-                <input type="text" id="player-2-name" pattern="^[a-zA-Z]{3,}$" required placeholder="Example: Steve">
+                <input type="text" id="player-2-name" pattern="[a-zA-Z]" minlength="3" maxlength="8" required placeholder="Example: Steve">
             </div>        
         </div>
         <button class="play-v1">PLAY!</button>
@@ -40,7 +40,7 @@
         <p>Please enter the players names</p>
         <div class="player-1-name">
             <label for="player-name">Player</label>
-            <input type="text" id="player-name" pattern="^[a-zA-Z]{3,}$" required placeholder="Example: Jeff">
+            <input type="text" id="player-name" pattern="[a-zA-Z]" minlength="3" maxlength="8" required placeholder="Example: Jeff">
         </div>
         <button class="play-v2">PLAY!</button>
     </div>    
@@ -52,14 +52,14 @@
             <div class="img-container">
                 <img src="/Admin-Grid/Profile1.jpg">
             </div>
-            <span class="player-name">Player 1:</span>            
+            <span class="first-player">Player 1:</span>            
             <div class="player1-score">0</div>
         </div>
         <div class="player-board">
             <div class="img-container">
                 <img src="./robot-modern-style-vector.jpg">
             </div>
-            <span class="player-name">Player 2:</span>
+            <span class="second-player">Player 2:</span>
             <div class="player2-score">0</div>
         </div>
     </div>
