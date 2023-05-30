@@ -1,3 +1,12 @@
+//Create a factory function to create the player objects
+const Player = (name, mark) => {
+    return { name, mark };
+};
+
+
+const Player1 = Player('player1', 'X');
+const Player2 = Player('player2', 'O');
+
 //Set an module pattern for the gameboard
 const gameboard = (() => {
     //Create an array that will hold the marks placed in the game board
@@ -16,6 +25,7 @@ const gameboard = (() => {
     //Function that will help determine game mode
     const gamemode = () => {
 
+
         //Select the buttons from the DOM
         let PvP = document.querySelector('.PvP');
         let PvC = document.querySelector('.PvC');
@@ -23,9 +33,11 @@ const gameboard = (() => {
         let playV2 = document.querySelector('.play-v2')
 
         //Select the input fields
+        let setOnlyPlayerName = document.getElementById('player-name');
         let setPlayer1Name = document.getElementById('player-1-name');
         let setPlayer2Name = document.getElementById('player-2-name');
-        let setOnlyPlayerName = document.getElementById('player-name');
+        let firstPlayer = document.querySelector('.first-player');
+        let secondPlayer = document.querySelector('.second-player');
 
         //Select screens
         let start = document.querySelector('.start-game');
@@ -46,11 +58,10 @@ const gameboard = (() => {
 
         //Start the game for PvP
         playV1.addEventListener('click', () => {
-            let setPlayer1Name = document.getElementById('player-1-name');
-            let setPlayer2Name = document.getElementById('player-2-name');
-            let firstPlayer = document.querySelector('.first-player');
-            let secondPlayer = document.querySelector('.second-player');
+            firstPlayer.innerHTML = setPlayer1Name.value + " mark is " + Player1.mark;
+            secondPlayer.innerHTML = setPlayer2Name.value + " mark is " + Player2.mark
             twoPlayersScreen.style.display = "none";
+            gameflow.flow()
         })
 
         //Start the game for PvC
@@ -63,22 +74,12 @@ const gameboard = (() => {
 })();
 
 
-//Create a factory function to create the player objects
-const Player = (name, mark) => {
-    return { name, mark };
-};
-
-
 //Modular pattern to control the flow of the game
 const gameflow = (() => {
     //Select all the squares 
     let squares = document.querySelectorAll('.square');
 
     gameboard.gamemode();
-
-
-    const Player1 = Player('jeff', 'X');
-    const Player2 = Player('steve', 'O');
 
     //Create a variable that will hold who's turn it tis to place a mark
     let turn = Player1.name;
@@ -184,7 +185,7 @@ const gameflow = (() => {
 
 
     //Create a function that will switch between the players turns
-    const flow = (() => {
+    const flow = () => {
 
         //For each square and index of the square add an event listener
         squares.forEach((square, index) => {
@@ -207,6 +208,7 @@ const gameflow = (() => {
                 };
             });
         });
-    })()
+    } 
+    return {flow}    
 })();
 
