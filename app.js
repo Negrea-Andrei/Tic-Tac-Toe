@@ -226,7 +226,7 @@ const gameflow = (() => {
                         let number;
                       
                         do {
-                          number = Math.floor(Math.random() * (9 - 0 + 1) + 0);
+                          number = Math.floor(Math.random() * (8 - 0 + 1) + 0);
                         } while (arraySquares[number].innerHTML !== '');
                       
                         arraySquares[number].innerHTML = 'O';
@@ -234,7 +234,7 @@ const gameflow = (() => {
                         winner();
                       };
 
-                    setTimeout(computerPick, 100)
+                    setTimeout(computerPick, 350)
                     winner();
                     
                 }
