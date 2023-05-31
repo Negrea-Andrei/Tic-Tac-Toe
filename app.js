@@ -217,8 +217,11 @@ const gameflow = (() => {
                 if (turn == Player1.name && square.innerHTML == '') {
                     square.innerHTML = Player1.mark;
                     gameboard.board[index] = square.innerHTML
-                    winner();
-                    turn = Player2.name
+                    if (winner()) {
+                        turn = Player1.name;
+                    } else {
+                        turn = Player2.name;
+                    }
                 }
 
                 //If it's the Player2 turn place an O and update the array with the mark placed on the arrays index as same as the square data attribute
