@@ -4,8 +4,8 @@ const Player = (name, mark) => {
 };
 
 
-const Player1 = Player('player1', 'X');
-const Player2 = Player('player2', 'O');
+let Player1 = Player('player1', 'X');
+let Player2 = Player('player2', 'O');
 
 //Set an module pattern for the gameboard
 const gameboard = (() => {
@@ -66,7 +66,10 @@ const gameboard = (() => {
 
         //Start the game for PvC
         playV2.addEventListener('click', () => {
+            firstPlayer.innerHTML = setOnlyPlayerName.value + " mark is " + Player1.mark;
+            secondPlayer.innerHTML = "Computer mark is " + Player2.mark
             onePlayerScreen.style.display = "none";
+            gameflow.flowPVC()
         })
     }
     //Return the board
@@ -208,7 +211,36 @@ const gameflow = (() => {
                 };
             });
         });
-    } 
-    return {flow}    
+    }
+    const flowPVC = () => {
+        squares.forEach((square, index) => {
+            square.addEventListener('click', () => {
+
+                // If it's the Player1 turn, place an X and update the array with the mark placed on the array's index as same as the square data attribute
+                if (square.innerHTML === '') {
+                    square.innerHTML = Player1.mark;
+                    gameboard.board[index] = square.innerHTML;                    
+
+                    const computerPick = () => {
+                        let arraySquares = Array.from(squares);
+                        let number;
+                      
+                        do {
+                          number = Math.floor(Math.random() * (9 - 0 + 1) + 0);
+                        } while (arraySquares[number].innerHTML !== '');
+                      
+                        arraySquares[number].innerHTML = 'O';
+                        gameboard.board[number] = arraySquares[number].innerHTML;
+                        winner();
+                      };
+
+                    setTimeout(computerPick, 100)
+                    winner();
+                    
+                }
+            });
+        });
+    };
+    return { flow, flowPVC }
 })();
 
