@@ -125,16 +125,19 @@ const gameflow = (() => {
                 //For the horizontal line
                 if (gameboard.board[i] == gameboard.board[i + 1] && gameboard.board[i] == gameboard.board[i + 2]) {
                     scoreUpdate()
+                    return true
                 }
 
                 //For vertical line
                 else if (gameboard.board[i] == gameboard.board[i + 3] && gameboard.board[i] == gameboard.board[i + 6]) {
                     scoreUpdate()
+                    return true
                 }
 
                 //For diagonal line
                 else if (gameboard.board[i] == gameboard.board[i + 4] && gameboard.board[i] == gameboard.board[i + 8]) {
                     scoreUpdate()
+                    return true
                 }
             }
 
@@ -144,6 +147,7 @@ const gameflow = (() => {
                 //Check for vertical line
                 if (gameboard.board[i] == gameboard.board[i + 3] && gameboard.board[i] == gameboard.board[i + 6]) {
                     scoreUpdate()
+                    return true
                 }
             }
 
@@ -153,11 +157,13 @@ const gameflow = (() => {
                 //Check for diagonal line
                 if (gameboard.board[i] == gameboard.board[i + 3] && gameboard.board[i] == gameboard.board[i + 6]) {
                     scoreUpdate()
+                    return true
                 }
 
                 //Check for vertical line
                 else if (gameboard.board[i] == gameboard.board[i + 2] && gameboard.board[i] == gameboard.board[i + 4]) {
                     scoreUpdate()
+                    return true
                 }
             }
 
@@ -167,6 +173,7 @@ const gameflow = (() => {
                 //Check for horizontal line
                 if (gameboard.board[i] == gameboard.board[i + 1] && gameboard.board[i] == gameboard.board[i + 2]) {
                     scoreUpdate()
+                    return true
                 }
             }
 
@@ -176,12 +183,14 @@ const gameflow = (() => {
                 //Check for horizontal line
                 if (gameboard.board[i] == gameboard.board[i + 1] && gameboard.board[i] == gameboard.board[i + 2]) {
                     scoreUpdate()
+                    return true
                 }
             }
 
             //If there is a tie
             else if (!gameboard.board.includes(' ')) {
                 resetBoard();
+                return true;
             }
         }
     }
@@ -189,6 +198,8 @@ const gameflow = (() => {
 
     //Create a function that will switch between the players turns
     const flow = () => {
+
+        let turn = Player1.name;
 
         //For each square and index of the square add an event listener
         squares.forEach((square, index) => {
@@ -214,33 +225,31 @@ const gameflow = (() => {
     }
     const flowPVC = () => {
         squares.forEach((square, index) => {
-            square.addEventListener('click', () => {
-
-                // If it's the Player1 turn, place an X and update the array with the mark placed on the array's index as same as the square data attribute
-                if (square.innerHTML === '') {
-                    square.innerHTML = Player1.mark;
-                    gameboard.board[index] = square.innerHTML;                    
-
-                    const computerPick = () => {
-                        let arraySquares = Array.from(squares);
-                        let number;
-                      
-                        do {
-                          number = Math.floor(Math.random() * (8 - 0 + 1) + 0);
-                        } while (arraySquares[number].innerHTML !== '');
-                      
-                        arraySquares[number].innerHTML = 'O';
-                        gameboard.board[number] = arraySquares[number].innerHTML;
-                        winner();
-                      };
-
-                    setTimeout(computerPick, 350)
-                    winner();
-                    
-                }
-            });
+          square.addEventListener('click', () => {
+            if (square.innerHTML === '') {
+              square.innerHTML = Player1.mark;
+              gameboard.board[index] = square.innerHTML;
+      
+              const computerPick = () => {
+                let arraySquares = Array.from(squares);
+                let number;
+                
+                do {
+                  number = Math.floor(Math.random() * (8 - 0 + 1) + 0);
+                } while (arraySquares[number].innerHTML !== '');
+                
+                arraySquares[number].innerHTML = Player2.mark;
+                gameboard.board[number] = arraySquares[number].innerHTML;
+                winner();
+              };
+      
+              if (!winner()) {
+                setTimeout(computerPick, 350);
+              }
+            }
+          });
         });
-    };
-    return { flow, flowPVC }
+      };
+      return { flow, flowPVC };
 })();
 
