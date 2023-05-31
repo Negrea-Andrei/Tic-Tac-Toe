@@ -44,6 +44,10 @@ const gameboard = (() => {
         let twoPlayersScreen = document.querySelector('.player-vs-player');
         let onePlayerScreen = document.querySelector('.player-vs-computer');
 
+        //Select the profile pic for the player
+        let P1 = document.querySelector('.P1');
+        let P2 = document.querySelector('.P2');
+
         //Add an event listener for when we want to play PvP
         PvP.addEventListener('click', () => {
             start.style.display = "none";
@@ -61,6 +65,8 @@ const gameboard = (() => {
             firstPlayer.innerHTML = setPlayer1Name.value + " mark is " + Player1.mark;
             secondPlayer.innerHTML = setPlayer2Name.value + " mark is " + Player2.mark
             twoPlayersScreen.style.display = "none";
+            P1.src = "/Admin-Grid/Profile1.jpg";
+            P2.src = "./avatar.jpg";
             gameflow.flow()
         })
 
@@ -69,6 +75,8 @@ const gameboard = (() => {
             firstPlayer.innerHTML = setOnlyPlayerName.value + " mark is " + Player1.mark;
             secondPlayer.innerHTML = "Computer mark is " + Player2.mark
             onePlayerScreen.style.display = "none";
+            P1.setAttribute('src', "/Admin-Grid/Profile1.jpg")
+            P2.setAttribute('src', "./robot-modern-style-vector.jpg")
             gameflow.flowPVC()
         })
     }
@@ -225,31 +233,31 @@ const gameflow = (() => {
     }
     const flowPVC = () => {
         squares.forEach((square, index) => {
-          square.addEventListener('click', () => {
-            if (square.innerHTML === '') {
-              square.innerHTML = Player1.mark;
-              gameboard.board[index] = square.innerHTML;
-      
-              const computerPick = () => {
-                let arraySquares = Array.from(squares);
-                let number;
-                
-                do {
-                  number = Math.floor(Math.random() * (8 - 0 + 1) + 0);
-                } while (arraySquares[number].innerHTML !== '');
-                
-                arraySquares[number].innerHTML = Player2.mark;
-                gameboard.board[number] = arraySquares[number].innerHTML;
-                winner();
-              };
-      
-              if (!winner()) {
-                setTimeout(computerPick, 350);
-              }
-            }
-          });
+            square.addEventListener('click', () => {
+                if (square.innerHTML === '') {
+                    square.innerHTML = Player1.mark;
+                    gameboard.board[index] = square.innerHTML;
+
+                    const computerPick = () => {
+                        let arraySquares = Array.from(squares);
+                        let number;
+
+                        do {
+                            number = Math.floor(Math.random() * (8 - 0 + 1) + 0);
+                        } while (arraySquares[number].innerHTML !== '');
+
+                        arraySquares[number].innerHTML = Player2.mark;
+                        gameboard.board[number] = arraySquares[number].innerHTML;
+                        winner();
+                    };
+
+                    if (!winner()) {
+                        setTimeout(computerPick, 350);
+                    }
+                }
+            });
         });
-      };
-      return { flow, flowPVC };
+    };
+    return { flow, flowPVC };
 })();
 
