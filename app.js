@@ -62,8 +62,8 @@ const gameboard = (() => {
 
         //Start the game for PvP
         playV1.addEventListener('click', () => {
-            firstPlayer.innerHTML = setPlayer1Name.value + " mark is " + Player1.mark;
-            secondPlayer.innerHTML = setPlayer2Name.value + " mark is " + Player2.mark
+            firstPlayer.innerHTML = setPlayer1Name.value + " mark is " + `"${Player1.mark}"`;
+            secondPlayer.innerHTML = setPlayer2Name.value + " mark is " + `"${Player2.mark}"`
             twoPlayersScreen.style.display = "none";
             P1.src = "/Admin-Grid/Profile1.jpg";
             P2.src = "./avatar.jpg";
@@ -72,8 +72,8 @@ const gameboard = (() => {
 
         //Start the game for PvC
         playV2.addEventListener('click', () => {
-            firstPlayer.innerHTML = setOnlyPlayerName.value + " mark is " + Player1.mark;
-            secondPlayer.innerHTML = "Computer mark is " + Player2.mark
+            firstPlayer.innerHTML = setOnlyPlayerName.value + " mark is " + `"${Player1.mark}"`;
+            secondPlayer.innerHTML = "Computer mark is " + `"${Player2.mark}"`
             onePlayerScreen.style.display = "none";
             P1.setAttribute('src', "/Admin-Grid/Profile1.jpg")
             P2.setAttribute('src', "./robot-modern-style-vector.jpg")
