@@ -90,8 +90,7 @@ const gameflow = (() => {
     //Select all the squares 
     let squares = document.querySelectorAll('.square');
 
-    gameboard.gamemode();
-
+    
     //Create a variable that will hold who's turn it tis to place a mark
     let turn = Player1.name;
 
@@ -263,4 +262,6 @@ const gameflow = (() => {
     };
     return { flow, flowPVC };
 })();
+
+gameboard.gamemode();
 
